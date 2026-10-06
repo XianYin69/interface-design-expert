@@ -1,0 +1,56 @@
+# GraphQL SDL 脚手架（形状示例：Relay 连接分页 + 显式废弃 + 错误与数据分离）
+# 判据对应：叶2（类型系统）、叶5（连接分页）、叶9（命名 camelCase 一致）
+
+directive @deprecated(reason: String = "No longer supported") on FIELD_DEFINITION
+
+type Problem {
+  type: String!
+  title: String!
+  field: String
+  code: String!
+  retryable: Boolean!
+}
+
+type Widget {
+  id: ID!
+  name: String!
+  priceMinorUnits: Int!
+  createdAt: String!
+  legacyName: String @deprecated(reason: "改用 name，2027-01-01 起移除")
+}
+
+type WidgetEdge {
+  node: Widget!
+  cursor: String!
+}
+
+type WidgetConnection {
+  edges: [WidgetEdge!]!
+  pageInfo: PageInfo!
+  totalCountEstimated: Int
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  endCursor: String
+}
+
+input WidgetCreateInput {
+  name: String!
+  priceMinorUnits: Int!
+}
+
+type WidgetPayload {
+  widget: Widget
+  problems: [Problem!]!
+}
+
+type Query {
+  widgets(first: Int = 20, after: String, orderBy: String = "id asc"): WidgetConnection!
+  widget(id: ID!): Widget
+}
+
+type Mutation {
+  # 幂等键由客户端生成；服务端保存窗口须在文档中声明
+  createWidget(input: WidgetCreateInput!, idempotencyKey: String!): WidgetPayload!
+}

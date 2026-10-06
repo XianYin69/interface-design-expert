@@ -1,0 +1,58 @@
+// 契约脚手架：proto3 服务定义（形状示例，无真实业务字段）
+syntax = "proto3";
+
+package example.v1;
+
+import "google/protobuf/timestamp.proto";
+
+// 字段号即兼容性地基：删除字段必须 reserved 号与名，永不复用。
+message Widget {
+  reserved 4, 7;
+  reserved "legacy_name", "legacy_flag";
+
+  string id = 1;
+  string name = 2;
+  // 金额用最小货币单位整数，避免浮点误差
+  int64 price_minor_units = 3;
+  google.protobuf.Timestamp created_at = 5;
+  // 显式 presence：区分「未设置」与「空串」
+  optional string note = 6;
+  WidgetState state = 8;
+}
+
+enum WidgetState {
+  // 零值必须是 UNSPECIFIED，否则旧数据与新客户端无法区分
+  WIDGET_STATE_UNSPECIFIED = 0;
+  WIDGET_STATE_ACTIVE = 1;
+  WIDGET_STATE_ARCHIVED = 2;
+}
+
+message ListWidgetsRequest {
+  int32 page_size = 1;
+  string page_token = 2;
+  // 排序必须有稳定次级键（id），否则跨页漂移
+  string order_by = 3;
+}
+
+message ListWidgetsResponse {
+  repeated Widget widgets = 1;
+  string next_page_token = 2;
+  optional int32 total_size_estimated = 3;
+}
+
+message CreateWidgetRequest {
+  // 幂等键由客户端生成，服务端保存窗口须文档化
+  string idempotency_key = 1;
+  Widget widget = 2;
+}
+
+service WidgetService {
+  rpc ListWidgets(ListWidgetsRequest) returns (ListWidgetsResponse);
+  rpc CreateWidget(CreateWidgetRequest) returns (Widget);
+  // 长时操作走 operations 资源，不挂长连接
+  rpc ArchiveWidget(ArchiveWidgetRequest) returns (Widget);
+}
+
+message ArchiveWidgetRequest {
+  string id = 1;
+}

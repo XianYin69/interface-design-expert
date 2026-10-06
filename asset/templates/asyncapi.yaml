@@ -1,0 +1,63 @@
+asyncapi: 3.0.0
+info:
+  title: example-events
+  version: 1.0.0
+  description: 事件契约脚手架（形状示例；投递语义必须显式声明）
+channels:
+  widgetCreated:
+    address: example.widget.created.v1
+    messages:
+      widgetCreated: {$ref: "#/components/messages/WidgetCreated"}
+  widgetFailed:
+    address: example.widget.failed.v1
+    description: 失败通道（dead-letter 等价物），payload 与成功事件同 schema 家族
+    messages:
+      widgetFailed: {$ref: "#/components/messages/WidgetFailed"}
+operations:
+  publishWidget:
+    action: send
+    channel: {$ref: "#/channels/widgetCreated"}
+    messages:
+      - {$ref: "#/channels/widgetCreated/messages/widgetCreated"}
+components:
+  messages:
+    WidgetCreated:
+      name: widgetCreated
+      title: 部件已创建
+      contentType: application/json
+      correlationId:
+        location: $message.correlationId
+        description: 与 HTTP 请求 request id 对齐
+      headers:
+        type: object
+        properties:
+          traceparent: {type: string, description: W3C Trace Context}
+          x-causation-id: {type: string}
+      payload: {$ref: "#/components/schemas/WidgetCreatedPayload"}
+    WidgetFailed:
+      name: widgetFailed
+      title: 部件处理失败
+      contentType: application/problem+json
+      payload: {$ref: "#/components/schemas/ProblemPayload"}
+  schemas:
+    WidgetCreatedPayload:
+      type: object
+      required: [eventId, occurredAt, widgetId]
+      properties:
+        eventId: {type: string, description: 去重键（消费方按此幂等处理）}
+        occurredAt: {type: string, format: date-time}
+        widgetId: {type: string}
+    ProblemPayload:
+      type: object
+      required: [type, title, retryable]
+      properties:
+        type: {type: string, default: "urn:example:error:processing"}
+        title: {type: string}
+        detail: {type: string}
+        retryable: {type: boolean}
+        retryCount: {type: integer, maximum: 5}
+bindings:
+  # 投递语义声明：at-least-once + 消费方按 eventId 去重（真实 exactly-once 跨系统不可达）
+  deliveryGuarantee: at-least-once
+  ordering: per-key(widgetId)
+  retry: {maxAttempts: 5, backoff: exponential-jitter, deadLetter: widgetFailed}
