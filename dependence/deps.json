@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "skill": "interface-design-expert",
+  "checked_at": "2026-10-07T01:20",
+  "note": "source_url 均为本轮 webfetch 确证的原始仓库/发布页；重定向后取落地仓库。",
+  "dependencies": [
+    {"name": "python", "type": "software", "source_url": "https://github.com/python/cpython", "license": "PSF-2.0", "version": "system", "install": "system", "checked_at": "2026-10-07T01:20", "source_url_status": "verified"},
+    {"name": "git", "type": "software", "source_url": "https://github.com/git/git", "license": "GPL-2.0", "version": "system", "install": "system", "checked_at": "2026-10-07T01:20", "source_url_status": "verified"},
+    {"name": "OpenAPI Specification", "type": "repo", "source_url": "https://github.com/OAI/OpenAPI-Specification", "license": "Apache-2.0", "version": "3.1.x", "install": "文档/规范，无需安装", "checked_at": "2026-10-07T01:20", "source_url_status": "verified"},
+    {"name": "AsyncAPI Specification", "type": "repo", "source_url": "https://github.com/asyncapi/spec", "license": "Apache-2.0", "version": "3.x", "install": "文档/规范，无需安装", "checked_at": "2026-10-07T01:20", "source_url_status": "verified"},
+    {"name": "protocolbuffers/protobuf", "type": "repo", "source_url": "https://github.com/protocolbuffers/protobuf", "license": "BSD-3-Clause", "version": "latest", "install": "见 source_url（protoc 发行包）", "checked_at": "2026-10-07T01:20", "source_url_status": "verified"},
+    {"name": "grpc/grpc", "type": "repo", "source_url": "https://github.com/grpc/grpc", "license": "Apache-2.0", "version": "latest", "install": "见 source_url", "checked_at": "2026-10-07T01:20", "source_url_status": "verified"},
+    {"name": "spectral-stoplight/spectral", "type": "software", "source_url": "https://github.com/stoplightio/spectral", "license": "Apache-2.0", "version": "latest", "install": "npm install -g @stoplight/spectral-cli", "checked_at": "2026-10-07T01:20", "source_url_status": "verified"},
+    {"name": "oasdiff", "type": "software", "source_url": "https://github.com/oasdiff/oasdiff", "license": "Apache-2.0", "version": "latest", "install": "go install github.com/oasdiff/oasdiff@latest", "checked_at": "2026-10-07T01:20", "source_url_status": "verified"},
+    {"name": "bufbuild/buf", "type": "software", "source_url": "https://github.com/bufbuild/buf", "license": "Apache-2.0", "version": "latest", "install": "见 source_url 发行页", "checked_at": "2026-10-07T01:20", "source_url_status": "verified"},
+    {"name": "Microsoft REST API Guidelines", "type": "repo", "source_url": "https://github.com/microsoft/api-guidelines", "license": "CC-BY-4.0", "version": "v2024", "install": "文档，无需安装", "checked_at": "2026-10-07T01:20", "source_url_status": "verified"},
+    {"name": "Google AIP", "type": "repo", "source_url": "https://github.com/aip-dev/google.aip.dev", "license": "CC-BY-4.0", "version": "latest", "install": "文档，无需安装", "checked_at": "2026-10-07T01:20", "source_url_status": "verified"},
+    {"name": "Zalando RESTful API guidelines", "type": "repo", "source_url": "https://github.com/zalando/restful-api-guidelines", "license": "CC-BY-4.0", "version": "latest", "install": "文档，无需安装", "checked_at": "2026-10-07T01:20", "source_url_status": "verified"},
+    {"name": "RFC 9457 Problem Details", "type": "repo", "source_url": "https://www.rfc-editor.org/rfc/rfc9457", "license": "RFC-Editor-Terms", "version": "9457", "install": "文档，无需安装", "checked_at": "2026-10-07T01:20", "source_url_status": "verified"},
+    {"name": "JSON Schema", "type": "repo", "source_url": "https://github.com/json-schema-org/json-schema-spec", "license": "CC-BY-4.0", "version": "2020-12", "install": "文档，无需安装", "checked_at": "2026-10-07T01:20", "source_url_status": "verified"},
+    {"name": "Pact", "type": "software", "source_url": "https://github.com/pact-foundation/pact-ruby", "license": "MIT", "version": "latest", "install": "gem install pact / 见 source_url", "checked_at": "2026-10-07T01:20", "source_url_status": "verified"},
+    {"name": "jsonschema (python)", "type": "software", "source_url": "https://github.com/python-jsonschema/jsonschema", "license": "MIT", "version": "latest", "install": "pip install jsonschema", "checked_at": "2026-10-07T01:20", "source_url_status": "verified"},
+    {"name": "graphql-spec", "type": "repo", "source_url": "https://github.com/graphql/graphql-spec", "license": "MIT", "version": "October 2021", "install": "文档，无需安装", "checked_at": "2026-10-07T01:20", "source_url_status": "verified"},
+    {"name": "semver", "type": "repo", "source_url": "https://github.com/semver/semver", "license": "CC-BY-4.0", "version": "2.0.0", "install": "文档，无需安装", "checked_at": "2026-10-07T01:20", "source_url_status": "verified"},
+    {"name": "RFC 9110 HTTP Semantics", "type": "repo", "source_url": "https://www.rfc-editor.org/rfc/rfc9110", "license": "RFC-Editor-Terms", "version": "9110", "install": "文档，无需安装", "checked_at": "2026-10-07T01:20", "source_url_status": "verified"},
+    {"name": "RFC 6749 OAuth 2.0", "type": "repo", "source_url": "https://www.rfc-editor.org/rfc/rfc6749", "license": "RFC-Editor-Terms", "version": "6749", "install": "文档，无需安装", "checked_at": "2026-10-07T01:20", "source_url_status": "verified"},
+    {"name": "W3C Trace Context", "type": "repo", "source_url": "https://www.w3.org/TR/trace-context/", "license": "W3C", "version": "REC-2021", "install": "文档，无需安装", "checked_at": "2026-10-07T01:20", "source_url_status": "verified"},
+    {"name": "file_ops", "type": "skill", "source_url": "local://skill_manage_system", "license": "MIT", "version": "system", "install": "随 SMS 提供", "checked_at": "2026-10-07T01:20", "source_url_status": "verified"},
+    {"name": "general-programming", "type": "skill", "source_url": "local://general-programming", "license": "MIT", "version": "system", "install": "调用方", "checked_at": "2026-10-07T01:20", "source_url_status": "verified"},
+    {"name": "skill_manage_system", "type": "skill", "source_url": "local://skill_manage_system", "license": "MIT", "version": "system", "install": "调度方", "checked_at": "2026-10-07T01:20", "source_url_status": "verified"}
+  ]
+}

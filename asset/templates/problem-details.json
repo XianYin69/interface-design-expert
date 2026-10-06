@@ -1,0 +1,12 @@
+{
+  "type": "urn:example:error:validation",
+  "title": "请求校验失败",
+  "status": 400,
+  "detail": "3 个字段不符合约束（全部列出，不遇第一个即返回）",
+  "instance": "req_01HT8Z9K7Q2M",
+  "errors": [
+    {"field": "name", "code": "TOO_LONG", "message": "长度须 ≤ 200", "retryable": false},
+    {"field": "priceMinorUnits", "code": "REQUIRED", "message": "缺失", "retryable": false},
+    {"field": "currency", "code": "UNKNOWN_ENUM", "message": "不在允许集合内", "retryable": false}
+  ]
+}
