@@ -27,7 +27,7 @@ W3C Trace Context | repo | https://www.w3.org/TR/trace-context/
 semver | repo | https://github.com/semver/semver
 file_ops | skill | local://skill_manage_system（联网搜索/抓取）
 general-programming | skill | local://general-programming（调用方）
-code-guidelines | skill | local://code-guidelines（调用方）
+general-software-dev | skill | local://general-software-dev（调用方）
 pavedpath-code | skill | local://pavedpath-code（调用方）
 skill_manage_system | skill | local://skill_manage_system（调度方）
 python-expert | skill | local://python-expert（语言层转派）

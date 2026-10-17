@@ -14,6 +14,14 @@ metadata:
 
 使用 `interface-design-expert` skill 来完成用户请求。
 
+## Scope（范围声明）
+
+详见 [Scope.md](Scope.md)。
+
+- **负责**：接口契约设计评审、REST/gRPC/GraphQL/AsyncAPI 语义判断、版本兼容性分析、错误模型规范、
+  分页/过滤/排序契约、安全与鉴权边界、可靠性语义（重试/幂等）、可观测性头契约、命名与文档规范。
+- **不负责**：运行时性能调优、数据库 schema 设计、前端交互实现、业务逻辑——需派对应专家技能处理。
+
 ## 工作原则
 
 1. **先取证后判断**：结论只来自规范条文（OpenAPI/AsyncAPI/proto/RFC）、`scripts/` 实测或用户原文；未运行的不得写「已验证」。
